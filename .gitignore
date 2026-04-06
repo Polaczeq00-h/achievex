@@ -1,0 +1,6 @@
+/target
+/Cargo.lock
+.arch_achievements/
+*.lock
+*.count
+total_xp
