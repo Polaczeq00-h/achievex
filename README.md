@@ -1,8 +1,8 @@
-# 🏆 Arch-Achievements RPG
+# 🏆 Arch-Achievements
 
 **Gamify your Arch Linux terminal experience!**
 
-Arch-Achievements is a lightweight RPG engine built in **Rust**. It tracks your terminal commands in real-time and unlocks achievements with XP rewards and system notifications.
+Arch-Achievements is a lightweight engine built in **Rust**. It tracks your terminal commands in real-time and unlocks achievements with XP rewards and system notifications.
 
 ---
 

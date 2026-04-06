@@ -1,5 +1,5 @@
 // src/main.rs
-mod achievements; // On importe notre nouveau fichier
+mod achievements;
 
 use notify_rust::Notification;
 use std::fs;
@@ -14,7 +14,6 @@ fn main() {
     let storage_path = format!("{}/.arch_achievements", home);
     let xp_file = format!("{}/total_xp", storage_path);
 
-    // --- LOGIQUE DE RESET ---
     if args[1] == "-reset" {
         if let Ok(_) = fs::remove_dir_all(&storage_path) {
             let _ = fs::create_dir_all(&storage_path);
