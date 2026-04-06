@@ -70,4 +70,4 @@ Wipe your progress and start a fresh journey.
 
 add many other,catch them all !!!
 
-### Built with love for the Arch Linux community.
+## Built with love for the Arch Linux community.
