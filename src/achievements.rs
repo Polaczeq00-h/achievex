@@ -5,7 +5,7 @@ pub fn get_list() -> Vec<&'static str> {
         "A great power...", "PKGBUILD Hacker", "Cargo Master", "Network Ninja",
         "I use Arch BTW", "Fetch Enjoyer", "you're stupid", "Git Init", "The Cleaner",
         "System Refreshed", "Mirror Master", "Log Whisperer", "Disk Surgeon",
-        "The Architect", "Manual Reader", "Package Hoarder","Media moments",
+        "The Architect", "Manual Reader", "Package Hoarder","Media moments","Little Hacker",
 
         "Shell Jumper", "Alias Wizard", "Disk Whisperer", "The Observer",
         "Wallpaper Hunter", "Font Explorer", "Kernel Peek", "Time Keeper",
@@ -72,6 +72,7 @@ pub fn check(cmd: &str, full: &str, storage: &str) -> Option<(&'static str, i32)
         "ip" if full.contains("a") => Some(("Network Ninja", 100)),
         "clear" => Some(("The Cleaner", 50)),
         "mpv" => Some(("Media moments", 50)),
+        "cmatrix" => Some(("Little Hacker", 50)),
         "rm" if full.contains("-rf") && full.contains("/") => Some(("you're stupid", 1000)),
 
         "fastfetch" | "neofetch" => {
