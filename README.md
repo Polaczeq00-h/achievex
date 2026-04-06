@@ -68,4 +68,6 @@ Wipe your progress and start a fresh journey.
 | you're stupid   | Run the forbidden rm -rf / command     |
 | arch user BTW   | [PLATINUM] Unlock every single trophy  |
 
-### Built for the Arch Linux community.
+add many other,catch them all !!!
+
+### Built with love for the Arch Linux community.
