@@ -1,3 +1,7 @@
+![Rust](https://img.shields.io/badge/language-Rust-orange.svg)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![AUR version](https://img.shields.io/aur/version/arch-achievements-rpg-git)
+
 # 🏆 Arch-Achievements
 
 **Gamify your Arch Linux terminal experience!**
@@ -57,17 +61,17 @@ achievements -reset
 
 Wipe your progress and start a fresh journey.
 
-## Exemple of Achivements to discover
+## Example of Achievements to discover
 
 | achievement     | Description                            |
 | --------------- | -------------------------------------- |
 | I use Arch BTW  | Run your first fastfetch or neofetch   |
 | PKGBUILD Hacker | Edit an AUR package build file         |
 | Cargo Master    | Compile a Rust project in release mode |
-| The Architect   | Successfully install this projet       |
+| The Architect   | Successfully install this project      |
 | you're stupid   | Run the forbidden rm -rf / command     |
 | arch user BTW   | [PLATINUM] Unlock every single trophy  |
 
-add many other,catch them all !!!
+And any others to discover, catch them all!
 
 ## Built with love for the Arch Linux community.
