@@ -1,0 +1,12 @@
+[Unit]
+Description=Achievix auto-achievement daemon
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/arch-achieve daemon 300
+Restart=on-failure
+RestartSec=15
+
+[Install]
+WantedBy=default.target

@@ -1,6 +1,6 @@
 /target
-/Cargo.lock
 .arch_achievements/
 *.lock
+!Cargo.lock
 *.count
 total_xp
