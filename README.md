@@ -45,6 +45,7 @@ Requirements:
 - `notify-rust` dependencies, usually DBus/libdbus on desktop Linux
 - Fish or Zsh if you want command hooks
 - optional: `paplay`, `pw-play`, `mpv`, or `ffplay` for achievement sound
+- optional: `piper-tts` plus a Piper voice model for generated voice lines
 - optional: Qt QML runner for overlay, such as `qml6`, `qmlscene`, or `qml`
 
 Install:
@@ -75,6 +76,20 @@ Setup copies it on first install to:
 ```
 
 If that file already exists, setup leaves it alone so users can keep their own custom sound.
+
+Setup also creates a default config file:
+
+```bash
+~/.config/achievix/config
+```
+
+Default TTS options:
+
+```text
+tts_enabled=true
+tts_model_path=~/piper/en_US-ryan-high.onnx
+tts_player=mpv
+```
 
 ## Core CLI
 
@@ -167,6 +182,31 @@ Playback tries these commands in order:
 4. `ffplay`
 
 The sound only plays when a new achievement is actually unlocked. Existing `.lock` files do not retrigger sound or XP.
+
+## TTS Voice Lines
+
+Achievix can generate short narrator voice lines with `piper-tts`.
+
+When a new achievement unlocks:
+
+1. Achievix builds a local narrator line with the achievement title and a comment.
+2. It runs `piper-tts` with the configured model.
+3. It caches the generated WAV file.
+4. It plays the cached WAV with `mpv` or `paplay`.
+
+Voice cache:
+
+```bash
+~/.local/share/achievix/voice_cache/v2/
+```
+
+Example cache file:
+
+```bash
+~/.local/share/achievix/voice_cache/v2/i_use_arch_btw.wav
+```
+
+If `piper-tts`, the model, or the audio player is missing, Achievix fails silently and continues normally.
 
 ## Notes
 

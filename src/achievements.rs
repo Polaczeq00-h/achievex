@@ -19,8 +19,51 @@ impl Rarity {
     }
 }
 
+impl Rarity {
+    pub fn voice_line(self) -> &'static str {
+        match self {
+            Self::Common => "Progress detected. Humanity remains under review.",
+            Self::Rare => "Not bad. The machine noticed.",
+            Self::Epic => "That was almost impressive.",
+            Self::Legendary => "Legendary achievement unlocked. Civilization may recover.",
+        }
+    }
+}
+
 pub struct AchievementMeta {
     pub rarity: Rarity,
+}
+
+pub struct Achievement {
+    pub id: String,
+    pub name: String,
+    pub description: String,
+    pub rarity: Rarity,
+}
+
+impl Achievement {
+    pub fn from_name(name: &str) -> Self {
+        let meta = get_meta(name);
+        Self {
+            id: achievement_id(name),
+            name: name.to_string(),
+            description: get_description(name).to_string(),
+            rarity: meta.rarity,
+        }
+    }
+}
+
+pub fn achievement_id(name: &str) -> String {
+    let mut out = String::new();
+    for ch in name.chars() {
+        if ch.is_ascii_alphanumeric() {
+            out.push(ch.to_ascii_lowercase());
+        } else if !out.ends_with('_') {
+            out.push('_');
+        }
+    }
+
+    out.trim_matches('_').to_string()
 }
 
 pub fn get_meta(name: &str) -> AchievementMeta {
@@ -73,6 +116,31 @@ pub fn get_meta(name: &str) -> AchievementMeta {
     };
 
     AchievementMeta { rarity }
+}
+
+pub fn get_description(name: &str) -> &'static str {
+    match name {
+        "I use Arch BTW" => "Run fastfetch or neofetch for the first time.",
+        "Fetch Enjoyer" => "Use fetch tools enough times to become a mirror hazard.",
+        "NVIDIA Survivor" => "Detect NVIDIA tooling and live to tell the tale.",
+        "Blender Victim" => "Launch Blender and accept the default cube problem.",
+        "Render Victim" => "Report a completed Blender render event.",
+        "Cycles Abuser" => "Render with Cycles and warm the room a little.",
+        "Steam Enjoyer" => "Detect Steam on the system.",
+        "Proton Wizard" => "Run Proton or Wine helper tooling.",
+        "Fish Heretic" => "Use the fish shell.",
+        "KDE Goblin" => "Detect a KDE Plasma desktop session.",
+        "Garuda Native" => "Detect Garuda Linux.",
+        "Cachy Kernel Rider" => "Detect a Cachy kernel.",
+        "Arch Family Resident" => "Detect an Arch-family distribution.",
+        "Ubuntu Tourist" => "Detect Ubuntu.",
+        "Debian Elder" => "Detect Debian.",
+        "Fedora Hat Wearer" => "Detect Fedora.",
+        "openSUSE Chameleon" => "Detect openSUSE.",
+        "NixOS Time Wizard" => "Detect NixOS.",
+        "Platinum Goblin" => "Unlock every known achievement.",
+        _ => "Unlock a Linux RPG achievement.",
+    }
 }
 
 pub fn get_list() -> Vec<&'static str> {

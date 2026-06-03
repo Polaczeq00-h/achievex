@@ -1,6 +1,8 @@
 // src/main.rs
 mod achievements;
+mod config;
 mod pet;
+mod voice;
 
 use chrono::Timelike;
 use notify_rust::Notification;
@@ -79,6 +81,11 @@ fn main() {
         }
         "reset" => {
             reset_progress(&storage_path, &xp_file);
+            return;
+        }
+        "unlock-all" => {
+            unlock_all_achievements(&storage_path, &xp_file);
+            print_profile(&storage_path, &xp_file);
             return;
         }
         "debug" => {
@@ -532,6 +539,22 @@ fn check_platinum(path: &str, xp_p: &str) {
     }
 }
 
+fn unlock_all_achievements(path: &str, xp_p: &str) {
+    for achievement in achievements::get_list() {
+        let xp = xp_for_rarity(achievements::get_meta(achievement).rarity);
+        unlock_achievement(path, xp_p, achievement, xp);
+    }
+}
+
+fn xp_for_rarity(rarity: achievements::Rarity) -> i32 {
+    match rarity {
+        achievements::Rarity::Common => 50,
+        achievements::Rarity::Rare => 150,
+        achievements::Rarity::Epic => 300,
+        achievements::Rarity::Legendary => 1000,
+    }
+}
+
 fn unlock_achievement(path: &str, xp_p: &str, name: &str, gain: i32) -> UnlockResult {
     let lock = format!("{}/{}.lock", path, name.replace(" ", "_"));
     let lock_result = OpenOptions::new().write(true).create_new(true).open(&lock);
@@ -557,6 +580,9 @@ fn unlock_achievement(path: &str, xp_p: &str, name: &str, gain: i32) -> UnlockRe
         .show()
         .ok();
     play_achievement_sound(path);
+    let achievement = achievements::Achievement::from_name(name);
+    let config = config::Config::load();
+    let _ = voice::play_achievement_voice(&achievement, &config);
     UnlockResult::Unlocked
 }
 

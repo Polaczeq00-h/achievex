@@ -68,6 +68,21 @@ if [ ! -f "$HOME/.arch_achievements/total_xp" ]; then
     echo "0" > "$HOME/.arch_achievements/total_xp"
 fi
 
+ACHIEVIX_CONFIG_DIR="$HOME/.config/achievix"
+ACHIEVIX_CONFIG="$ACHIEVIX_CONFIG_DIR/config"
+mkdir -p "$ACHIEVIX_CONFIG_DIR"
+
+if [ ! -f "$ACHIEVIX_CONFIG" ]; then
+    cat > "$ACHIEVIX_CONFIG" <<EOF
+tts_enabled=true
+tts_model_path=~/piper/en_US-ryan-high.onnx
+tts_player=mpv
+EOF
+    echo -e "${GREEN}Default Achievix config installed.${NC}"
+else
+    echo -e "${BLUE}ℹ️ Achievix config already exists.${NC}"
+fi
+
 if [ -f "$HOME/.arch_achievements/achieve.mp3" ]; then
     echo -e "${BLUE}ℹ️ custom achievement sound already exists.${NC}"
 elif [ -f "assets/achieve.mp3" ]; then
