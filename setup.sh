@@ -113,4 +113,6 @@ echo -e "Type ${BLUE}achievements${NC} to view all achievements unlocked."
 echo -e "Type ${BLUE}arch-achieve overlay${NC} to launch the KDE pet overlay."
 echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 
+# Resetowanie progressu dewelopera i pierwszy trigger instalacyjny
+/usr/local/bin/achievix reset
 /usr/local/bin/arch-achieve trigger arch-achieve "setup install"
